@@ -16,7 +16,8 @@ export const getAccommodations = async (req, res) => {
     const accs = await Accommodation.find().populate("facilities");
     res.json(accs);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("❌ getAccommodations error:", error); // ← add this
+    res.status(500).json({ error: error.message, stack: error.stack }); // ← add stack
   }
 };
 
