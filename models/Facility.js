@@ -14,6 +14,21 @@ const facilitySchema = new mongoose.Schema(
     description: {
       type: String,
     },
+
+    category: {
+      type: String,
+      enum: ["Leisure", "Wellness", "Dining", "Business", "Transport", "In-Room"],
+      default: "Leisure",
+    },
+
+    available: {
+      type: Boolean,
+      default: true,
+    },
+
+    imageUrl: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

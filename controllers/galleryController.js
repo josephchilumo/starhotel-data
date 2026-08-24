@@ -29,3 +29,23 @@ export const deleteImage = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// UPLOAD IMAGE FILES
+export const uploadImages = async (req, res) => {
+  try {
+    const category = req.body.category || "rooms";
+    const title = req.body.title || "";
+    const description = req.body.description || "";
+    const images = await Gallery.insertMany(
+      (req.files || []).map((file) => ({
+        title,
+        description,
+        category,
+        imageUrl: `${req.protocol}://${req.get("host")}/uploads/${file.filename}`,
+      }))
+    );
+    res.status(201).json(images);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

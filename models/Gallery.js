@@ -6,6 +6,10 @@ const gallerySchema = new mongoose.Schema(
       type: String,
     },
 
+    description: {
+      type: String,
+    },
+
     imageUrl: {
       type: String,
       required: true,
